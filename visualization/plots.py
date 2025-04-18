@@ -5,7 +5,7 @@
 Fonctions de visualisation pour la simulation financière
 """
 import matplotlib
-matplotlib.use('Qt5Agg')
+matplotlib.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
