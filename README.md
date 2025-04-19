@@ -31,6 +31,92 @@ Cette application permet de simuler et visualiser les résultats financiers d'un
 
 ## Déploiement
 
+### Déploiement avec Docker
+
+#### Utilisation du script d'aide
+
+1. Exécuter le script d'aide:
+   ```
+   ./docker-run.sh
+   ```
+
+2. Accéder à l'application dans votre navigateur à l'adresse: http://localhost:8501
+
+#### Manuellement
+
+1. Construire l'image Docker:
+   ```
+   docker build -t simulation-esn .
+   ```
+
+2. Exécuter le conteneur:
+   ```
+   docker run -p 8501:8501 simulation-esn
+   ```
+
+3. Accéder à l'application dans votre navigateur à l'adresse: http://localhost:8501
+
+### Déploiement avec Docker Compose
+
+#### Utilisation du script d'aide
+
+1. Afficher l'aide:
+   ```
+   ./docker-compose-run.sh help
+   ```
+
+2. Lancer en mode développement:
+   ```
+   ./docker-compose-run.sh dev
+   ```
+
+3. Lancer en mode production:
+   ```
+   ./docker-compose-run.sh prod
+   ```
+
+4. Arrêter l'application:
+   ```
+   ./docker-compose-run.sh stop-dev  # Pour le mode développement
+   ./docker-compose-run.sh stop-prod # Pour le mode production
+   ```
+
+5. Voir les logs (mode production):
+   ```
+   ./docker-compose-run.sh logs
+   ```
+
+#### Manuellement
+
+##### Pour le développement (avec volumes montés)
+
+1. Lancer l'application avec Docker Compose:
+   ```
+   docker-compose up
+   ```
+
+2. Pour arrêter l'application:
+   ```
+   docker-compose down
+   ```
+
+##### Pour la production
+
+1. Lancer l'application en mode production:
+   ```
+   docker-compose -f docker-compose-prod.yml up -d
+   ```
+
+2. Pour arrêter l'application:
+   ```
+   docker-compose -f docker-compose-prod.yml down
+   ```
+
+3. Pour voir les logs:
+   ```
+   docker-compose -f docker-compose-prod.yml logs -f
+   ```
+
 ### Déploiement sur Streamlit Cloud
 
 1. Créer un compte sur [Streamlit Cloud](https://streamlit.io/cloud)
@@ -74,3 +160,11 @@ Cette application permet de simuler et visualiser les résultats financiers d'un
 - `model/`: Logique métier et calculs
 - `visualization/`: Fonctions de visualisation
 - `utils/`: Utilitaires divers
+- `Dockerfile`: Configuration pour construire l'image Docker
+- `docker-compose.yml`: Configuration pour Docker Compose (développement)
+- `docker-compose-prod.yml`: Configuration pour Docker Compose (production)
+- `.dockerignore`: Fichiers à exclure du contexte de build Docker
+- `docker-run.sh`: Script pour construire et exécuter rapidement l'application
+- `docker-compose-run.sh`: Script d'aide pour gérer Docker Compose
+- `.env`: Variables d'environnement pour Docker Compose
+- `healthcheck.py`: Script de vérification de santé pour le conteneur Docker

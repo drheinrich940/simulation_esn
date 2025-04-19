@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 
 """
 Health check script for Docker container
@@ -42,10 +42,10 @@ def check_streamlit_health(base_url="http://localhost:8501", max_retries=5, retr
     return False
 
 if __name__ == "__main__":
-    # Utiliser l'URL fournie en argument ou l'URL par défaut
+
     base_url = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8501"
 
     if check_streamlit_health(base_url):
-        sys.exit(0)  # Succès
+        sys.exit(0)
     else:
-        sys.exit(1)  # Échec
+        sys.exit(1)
